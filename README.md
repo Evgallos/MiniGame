@@ -31,32 +31,26 @@ This game was built using **C#** and runs in the console. The player's goal is t
 
 ---
 
-## ✨ **Key Code Snippet (YAML)**  
+## ✨🍽️ Spawning Random Food in the Game
+The following function randomly places food at a new location within the console window. Each food type has a unique effect on the player when collected.
+
 ```yaml
-name: MiniGame Build
-on: [push, pull_request]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+// Displays random food at a random location
+void ShowFood()
+{
+    // Update food to a random index
+    food = random.Next(0, foods.Length);
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '7.0.x'
+    // Update food position to a random location
+    foodX = random.Next(0, width - player.Length);
+    foodY = random.Next(0, height - 1);
 
-      - name: Restore Dependencies
-        run: dotnet restore
-
-      - name: Build the Project
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Run Tests
-        run: dotnet test --no-build --verbosity normal
+    // Display the food at the location
+    SetCursorPosition(foodX, foodY);
+    Write(foods[food]);
+}
 ```
-This **GitHub Actions YAML** automates the build and test process, ensuring every commit is validated before deployment.  
+This function ensures that food appears at different positions each time, making the game dynamic and engaging! 🎮🔥
 
 ---
 
